@@ -1,0 +1,26 @@
+FROM alpine/git as override-entrypoint
+
+RUN echo "First stage output"
+
+ENTRYPOINT ["/bin/echo", "Hello world"]
+
+
+FROM override-entrypoint as second
+
+RUN echo "Second stage output"
+
+# No override so original ENTRYPOINT is run
+
+FROM override-entrypoint as third
+
+RUN echo "Third stage output"
+
+ENTRYPOINT [ "/bin/echo", "Hello overridden" ]
+
+# New entry point, so only this ENTRYPOINT is run, IF more is added in the docker run command it is APPENDED to this ENTRYPOINT
+
+FROM override-entrypoint as forth
+
+CMD [ "/bin/echo", "Hello overridden" ]
+
+# New CMD, so only the original entry point is run with this added to the end, unless more is added in the docker run command then the CMD here is IGNORED

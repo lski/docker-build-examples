@@ -1,0 +1,3 @@
+FROM override-entrypoint:latest
+
+# No override so original ENTRYPOINT is run

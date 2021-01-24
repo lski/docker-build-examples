@@ -1,0 +1,5 @@
+FROM override-entrypoint:latest
+
+ENTRYPOINT [ "/bin/echo", "Hello overridden" ]
+
+# New entry point, so only this ENTRYPOINT is run, IF more is added in the docker run command it is APPENDED to this ENTRYPOINT

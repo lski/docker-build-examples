@@ -1,0 +1,5 @@
+FROM override-entrypoint:latest
+
+CMD [ "/bin/echo", "Hello overridden" ]
+
+# New CMD, so only the original entry point is run with this added to the end, unless more is added in the docker run command then the CMD here is IGNORED
